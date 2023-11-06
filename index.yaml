@@ -1,0 +1,8 @@
+indexes:
+
+- kind: Health
+  properties:
+  - name: User
+    direction: asc
+  - name: Timestamp
+    direction: asc  

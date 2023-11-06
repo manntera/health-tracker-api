@@ -1,1 +1,1 @@
-# HealthTrackerApi
+# health-tracker-api
