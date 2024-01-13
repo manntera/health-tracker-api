@@ -3,7 +3,6 @@ package healthUsecase
 import (
 	"context"
 	"errors"
-	"time"
 
 	"manntera.com/health-tracker-api/pkg/repository/healthRepository"
 	"manntera.com/health-tracker-api/pkg/repository/userRepository"
@@ -18,13 +17,12 @@ func NewHealthUsecase(healthRepo healthRepository.IHealthRepository, userRepo us
 	return &HealthUsecase{healthRepo: healthRepo, userRepo: userRepo}
 }
 
-func (u *HealthUsecase) AddData(ctx context.Context, userId string, healthScore int, comment string) (*healthRepository.Health, error) {
+func (u *HealthUsecase) AddData(ctx context.Context, userId string, healthScore int, comment string, timestamp int64) (*healthRepository.Health, error) {
 	user, userDataErr := u.userRepo.GetData(ctx, userId)
 	if userDataErr != nil {
 		return nil, userDataErr
 	}
 
-	timestamp := time.Now().Unix()
 	health, err := u.healthRepo.AddData(ctx, user.Id, timestamp, healthScore, comment)
 	if err != nil {
 		return nil, err
