@@ -183,8 +183,8 @@ func getHealth(c echo.Context) error {
 }
 
 type healthDeleteReq struct {
-	UserId string
-	Uuid   string
+	UserId string `json:"userId"`
+	Uuid   string `json:"uuid"`
 }
 
 func deleteHealth(c echo.Context) error {
