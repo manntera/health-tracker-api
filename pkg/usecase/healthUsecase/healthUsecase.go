@@ -17,13 +17,13 @@ func NewHealthUsecase(healthRepo healthRepository.IHealthRepository, userRepo us
 	return &HealthUsecase{healthRepo: healthRepo, userRepo: userRepo}
 }
 
-func (u *HealthUsecase) AddData(ctx context.Context, userId string, healthScore int, comment string, timestamp int64) (*healthRepository.Health, error) {
+func (u *HealthUsecase) AddData(ctx context.Context, userId string, healthScore int, comment string, timestamp int64, medicineName string) (*healthRepository.Health, error) {
 	user, userDataErr := u.userRepo.GetData(ctx, userId)
 	if userDataErr != nil {
 		return nil, userDataErr
 	}
 
-	health, err := u.healthRepo.AddData(ctx, user.Id, timestamp, healthScore, comment)
+	health, err := u.healthRepo.AddData(ctx, user.Id, timestamp, healthScore, comment, medicineName)
 	if err != nil {
 		return nil, err
 	}

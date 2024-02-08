@@ -33,17 +33,18 @@ func (repo *HealthRepository) GetHealthCollectionFromUserId(userId string) *fire
 	return repo.userCollection.Doc(userId).Collection(repository.COLLECTION_HEALTH)
 }
 
-func (repo *HealthRepository) AddData(ctx context.Context, userId string, timestamp int64, healthScore int, comment string) (*Health, error) {
+func (repo *HealthRepository) AddData(ctx context.Context, userId string, timestamp int64, healthScore int, comment string, medicineName string) (*Health, error) {
 	doc, _, addErr := repo.GetHealthCollectionFromUserId(userId).Add(ctx, map[string]interface{}{})
 
 	if addErr != nil {
 		return nil, addErr
 	}
 	healthData := Health{
-		Id:          doc.ID,
-		Timestamp:   timestamp,
-		HealthScore: healthScore,
-		Comment:     comment,
+		Id:           doc.ID,
+		Timestamp:    timestamp,
+		HealthScore:  healthScore,
+		Comment:      comment,
+		MedicineName: medicineName,
 	}
 
 	_, err := doc.Set(ctx, healthData)

@@ -22,7 +22,7 @@ func TestAddData(t *testing.T) {
 	}
 
 	t.Run("Test AddData", func(t *testing.T) {
-		_, err = healthRepository.AddData(ctx, userName, testData.Timestamp, testData.HealthScore, testData.Comment)
+		_, err = healthRepository.AddData(ctx, userName, testData.Timestamp, testData.HealthScore, testData.Comment, testData.MedicineName)
 		if err != nil {
 			t.Error(err)
 		}

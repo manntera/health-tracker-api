@@ -72,7 +72,7 @@ func main() {
 			}
 			healthUC := healthUsecase.NewHealthUsecase(healthRepo, userRepo)
 
-			result, getErr := healthUC.AddData(cxt, "rVzkNtsT4Zfk4O1mrhUgkxJgdVi2", d.score, d.comment, d.timeStamp)
+			result, getErr := healthUC.AddData(cxt, "rVzkNtsT4Zfk4O1mrhUgkxJgdVi2", d.score, d.comment, d.timeStamp, "")
 			if getErr != nil {
 				panic(getErr)
 			}
