@@ -112,10 +112,11 @@ func deleteUser(c echo.Context) error {
 }
 
 type healthAddReq struct {
-	UserId      string `json:"userId"`
-	HealthScore int    `json:"healthScore"`
-	Comment     string `json:"comment"`
-	Timestamp   int64  `json:"timestamp"`
+	UserId       string `json:"userId"`
+	HealthScore  int    `json:"healthScore"`
+	Comment      string `json:"comment"`
+	Timestamp    int64  `json:"timestamp"`
+	MedicineName string `json:"medicineName"`
 }
 
 func addHealth(c echo.Context) error {
@@ -138,7 +139,7 @@ func addHealth(c echo.Context) error {
 		return echo.NewHTTPError(500, err)
 	}
 
-	result, getErr := healthUC.AddData(c.Request().Context(), healthData.UserId, healthData.HealthScore, healthData.Comment, healthData.Timestamp)
+	result, getErr := healthUC.AddData(c.Request().Context(), healthData.UserId, healthData.HealthScore, healthData.Comment, healthData.Timestamp, healthData.MedicineName)
 
 	if getErr != nil {
 		return echo.NewHTTPError(500, getErr)
