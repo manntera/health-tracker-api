@@ -5,5 +5,5 @@ type Health struct {
 	Timestamp    int64  `json:"timestamp"`
 	HealthScore  int    `json:"healthScore"`
 	Comment      string `json:"comment"`
-	MedicineName string `json:"medicine"`
+	MedicineName string `json:"medicineName"`
 }
